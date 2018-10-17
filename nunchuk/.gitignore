@@ -1,0 +1,3 @@
+*.o
+nunchuk
+.errs.t

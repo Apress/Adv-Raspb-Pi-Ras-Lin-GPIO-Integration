@@ -1,0 +1,25 @@
+PREFIX          ?= /usr/local
+CXX             = g++
+CC              = gcc
+INCL            = -I.
+WARNS           = -Wall -Wno-deprecated 
+STD             ?= c++11
+OPTZ            ?= -g -O0
+
+CXXFLAGS        = -std=$(STD) $(WARNS) $(INCL)
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(OPTZ) $< -o $*.o
+
+all:	controlusb
+
+controlusb: controlusb.o
+	$(CXX) $(CFLAGS) controlusb.o -o controlusb -lusb-1.0
+
+clean:
+	rm -f *.o controlusb
+
+clobber: clean
+	rm -f ezusb.ihx
+
+
